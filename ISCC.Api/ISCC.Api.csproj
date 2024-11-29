@@ -6,4 +6,18 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Content Include="..\.gitignore">
+        <Link>.gitignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="13.0.1" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.1.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="7.1.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.1.0" />
+    </ItemGroup>
+
 </Project>

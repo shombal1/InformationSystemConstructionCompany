@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationSystemConstructionCompany", "InformationSystemConstructionCompany\InformationSystemConstructionCompany.csproj", "{7B841193-D699-48E2-8213-DC98A6009693}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISCC.Api", "ISCC.Api\ISCC.Api.csproj", "{0996D46F-81F3-4A91-A03F-10640362BBEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISCC.Storage", "ISCC.Storage\ISCC.Storage.csproj", "{1347B393-21F5-4AC0-BEBA-4F3D01B432F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7B841193-D699-48E2-8213-DC98A6009693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B841193-D699-48E2-8213-DC98A6009693}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B841193-D699-48E2-8213-DC98A6009693}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B841193-D699-48E2-8213-DC98A6009693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0996D46F-81F3-4A91-A03F-10640362BBEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0996D46F-81F3-4A91-A03F-10640362BBEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0996D46F-81F3-4A91-A03F-10640362BBEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0996D46F-81F3-4A91-A03F-10640362BBEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1347B393-21F5-4AC0-BEBA-4F3D01B432F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1347B393-21F5-4AC0-BEBA-4F3D01B432F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1347B393-21F5-4AC0-BEBA-4F3D01B432F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1347B393-21F5-4AC0-BEBA-4F3D01B432F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

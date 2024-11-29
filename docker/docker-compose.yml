@@ -1,0 +1,15 @@
+networks:
+  default:
+    name: 'iscc_network'
+    
+services:
+  api:
+    build:
+      context: ./..
+      dockerfile: docker/Dockerfile
+    container_name: 'iscc_api'
+    ports:
+      - '8080:8080'
+    environment:
+      ASPNETCORE_URLS: 'http://0.0.0.0:8080'
+      CORS__ORIGINS: 'https://*' 
