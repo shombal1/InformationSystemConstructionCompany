@@ -40,7 +40,8 @@ public class ProjectController : ControllerBase
     [Route("CreateGroup")]
     public async Task<IActionResult> CreateGroup([FromServices] MainDbContext dbContext,[FromBody] IEnumerable<CreateGroupTasksDto> groups )
     {
-        AddGroupsAsync(dbContext,groups);
+        await AddGroupsAsync(dbContext,groups);
+        await dbContext.SaveChangesAsync();
         return Ok(await Task.FromResult("sucess"));
     }
     
@@ -110,7 +111,7 @@ public class ProjectController : ControllerBase
             //     public Guid GroupId { get; set; }
             //     public GroupTaskEntity GroupTask { get; set; }
             // }
-            decimal percentageContent = (decimal)task.Quantity/plan.Quantity;
+            decimal percentageContent = (decimal)task.Quantity/plan.Quantity + 1m;
             var taskEntity = new TaskEntity
             {
                 Id = Guid.NewGuid(),
