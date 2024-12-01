@@ -3,6 +3,7 @@ using ISCC.Api.Models.Request;
 using ISCC.Api.Models.Response;
 using ISCC.Domain.UseCase.CreateProjectUseCase;
 using ISCC.Domain.UseCase.GetAllProjects;
+using ISCC.Storage;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,4 +33,14 @@ public class ProjectController : ControllerBase
         return Ok(mapper.Map<ProjectDto>(await mediator.Send(
             mapper.Map<CreateProjectCommand>(createProjectDto), cancellationToken)));
     }
+
+    
+    [HttpPost]
+    [Route("CreateGroup")]
+    public async Task<IActionResult> CreateGroup([FromServices] MainDbContext dbContext,[FromBody] IEnumerable<CreateGroupTasksDto> groups )
+    {
+        return Ok(await Task.FromResult("sucess"));
+    }
+    
+    
 }

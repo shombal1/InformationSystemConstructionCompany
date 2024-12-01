@@ -24,6 +24,12 @@ public class MainDbContext(DbContextOptions<MainDbContext> options) : DbContext(
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(MainDbContext))!);
 
+        modelBuilder.Entity<UnitTypeEntity>().HasData(new UnitTypeEntity()
+        {
+            Id = Guid.Parse("F82901E1-7E54-4FB7-82C7-130D76E9FAA4"),
+            Name = "шт"
+        });
+        
         base.OnModelCreating(modelBuilder);
     }
 }

@@ -6,7 +6,7 @@ volumes:
   postgres:    
 
 services:
-  postgres:
+  iscc-postgres:
     image: 'postgres:17.0'
     container_name: 'iscc-postgres'
     ports:
@@ -28,6 +28,8 @@ services:
       - '8080:8080'
     environment:
       ASPNETCORE_URLS: 'http://0.0.0.0:8080'
-      CORS__ORIGINS: 'https://*' 
+      ConnectionStrings__MainDbContext: 'Host=iscc-postgres;User Id=admin;Password=admin;Database=ISCC_DB;Port=5432'
+    depends_on:
+      - iscc-postgres
       
   

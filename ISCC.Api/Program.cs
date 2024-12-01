@@ -3,7 +3,9 @@ using ISCC.Api;
 using ISCC.Api.Controllers;
 using ISCC.Domain.DependencyInjection;
 using ISCC.Domain.Models;
+using ISCC.Storage;
 using ISCC.Storage.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +18,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", configurePolicy =>
     {
-        configurePolicy.WithOrigins(configure["Cors:Origins"]!)
+        configurePolicy.AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
@@ -30,7 +32,9 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
 
+
 var app = builder.Build();
+
 
 app.UseCors("AllowSpecificOrigin");
 app.UseHttpsRedirection();
@@ -38,6 +42,15 @@ app.MapControllers();
 app.UseRouting();
 app.UseSwagger();
 app.UseSwaggerUI();
-await app.AddSeed();
 app.Run();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    await Task.Delay(10_000);
+    
+    var context = services.GetRequiredService<MainDbContext>();
+    context.Database.Migrate(); 
+
+}
