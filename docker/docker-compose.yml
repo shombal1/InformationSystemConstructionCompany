@@ -2,14 +2,32 @@ networks:
   default:
     name: 'iscc_network'
     
+volumes:
+  postgres:    
+
 services:
+  postgres:
+    image: 'postgres:17.0'
+    container_name: 'iscc-postgres'
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 'admin'
+      POSTGRES_USER: 'admin'
+      POSTGRES_DB: 'ISCC_DB'
+  
+  
   api:
     build:
       context: ./..
       dockerfile: docker/Dockerfile
-    container_name: 'iscc_api'
+    container_name: 'iscc-api'
     ports:
       - '8080:8080'
     environment:
       ASPNETCORE_URLS: 'http://0.0.0.0:8080'
       CORS__ORIGINS: 'https://*' 
+      
+  

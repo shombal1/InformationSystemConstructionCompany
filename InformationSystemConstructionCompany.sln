@@ -4,6 +4,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISCC.Api", "ISCC.Api\ISCC.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISCC.Storage", "ISCC.Storage\ISCC.Storage.csproj", "{1347B393-21F5-4AC0-BEBA-4F3D01B432F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISCC.Storage.DependencyInjection", "ISCC.Storage.DependencyInjection\ISCC.Storage.DependencyInjection.csproj", "{8CEF5F46-D6FE-4615-B317-505F158B08AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISCC.Domain", "ISCC.Domain\ISCC.Domain.csproj", "{C8059293-88B7-4AB1-ADA7-B933557471C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISCC.Domain.DependencyInjection", "ISCC.Domain.DependencyInjection\ISCC.Domain.DependencyInjection.csproj", "{79256BFE-BC7F-4473-B7F2-9F7FFCB6C4FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +24,17 @@ Global
 		{1347B393-21F5-4AC0-BEBA-4F3D01B432F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1347B393-21F5-4AC0-BEBA-4F3D01B432F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1347B393-21F5-4AC0-BEBA-4F3D01B432F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CEF5F46-D6FE-4615-B317-505F158B08AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CEF5F46-D6FE-4615-B317-505F158B08AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CEF5F46-D6FE-4615-B317-505F158B08AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CEF5F46-D6FE-4615-B317-505F158B08AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8059293-88B7-4AB1-ADA7-B933557471C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8059293-88B7-4AB1-ADA7-B933557471C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8059293-88B7-4AB1-ADA7-B933557471C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8059293-88B7-4AB1-ADA7-B933557471C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79256BFE-BC7F-4473-B7F2-9F7FFCB6C4FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79256BFE-BC7F-4473-B7F2-9F7FFCB6C4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79256BFE-BC7F-4473-B7F2-9F7FFCB6C4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79256BFE-BC7F-4473-B7F2-9F7FFCB6C4FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
