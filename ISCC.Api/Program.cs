@@ -63,6 +63,8 @@ using (var scope = app.Services.CreateScope())
             Name = "шт"
         };
         await context.UnitTypes.AddAsync(unitType);
+
+        await context.SaveChangesAsync();
     }
     
 }

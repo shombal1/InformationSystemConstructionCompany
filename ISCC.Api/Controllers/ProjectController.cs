@@ -40,6 +40,7 @@ public class ProjectController : ControllerBase
     [Route("CreateGroup")]
     public async Task<IActionResult> CreateGroup([FromServices] MainDbContext dbContext,[FromBody] IEnumerable<CreateGroupTasksDto> groups )
     {
+        AddGroupsAsync(dbContext,groups);
         return Ok(await Task.FromResult("sucess"));
     }
     
@@ -47,19 +48,36 @@ public class ProjectController : ControllerBase
     {
         foreach (var group in groupTasks)
         {
-            await AddGroupAsync(dbContext,group);
+            await AddGroupAsync(null,dbContext,group);
         }
         await dbContext.SaveChangesAsync();
     }
     
-    private async Task AddGroupAsync(MainDbContext dbContext,CreateGroupTasksDto group)
+    
+    
+    private async Task AddGroupAsync(Guid? parentGroupId,MainDbContext dbContext,CreateGroupTasksDto group)
     {
+        
+    // public Guid Id { get; set; }
+    //
+    // [MaxLength(100)] public string Name { get; set; }
+    //
+    // public Guid ProjectId { get; set; }
+    // public ProjectEntity Project { get; set; }
+    //
+    // public Guid? ParentGroupId { get; set; }
+    // public GroupTaskEntity? ParentGroup { get; set; } = null!;
+    //
+    // public ICollection<TaskEntity> Tasks { get; set; } = null!;
+    //
+    // public ICollection<GroupTaskEntity> SubGroups { get; set; } = null!;
+    
         var groupEntity = new GroupTaskEntity()
         {
             Id = Guid.NewGuid(),
             Name = group.Name,
             ProjectId = group.ProjectId,
-            
+            ParentGroupId = parentGroupId
             
         };
         await dbContext.GroupTasks.AddAsync(groupEntity);
@@ -69,8 +87,30 @@ public class ProjectController : ControllerBase
         {
             var plan = dbContext.ProjectPlans.First(p => task.PlanId == p.Id);
             
-            
-            
+            // public class TaskEntity
+            // {
+            //     public Guid Id { get; set; }
+            //     [MaxLength(100)] public string Name { get; set; }
+            //
+            //     public decimal PercentageContent { get; set; }
+            //     public int Quantity { get; set; }
+            //
+            //     public decimal TotalActualPriceMaterial { get; set; }
+            //     public decimal TotalActualPriceWork { get; set; }
+            //     public decimal TotalActualPrice { get; set; }
+            //     public double TotalLabor { get; set; }
+            //
+            //     public decimal TotalCostPriceMaterial { get; set; }
+            //     public decimal TotalCostPriceWork { get; set; }
+            //     public decimal TotalCostPrice { get; set; }
+            //
+            //     public Guid ProjectPlanId { get; set; }
+            //     public ProjectPlanEntity ProjectPlan { get; set; } = null!;
+            //
+            //     public Guid GroupId { get; set; }
+            //     public GroupTaskEntity GroupTask { get; set; }
+            // }
+            decimal percentageContent = (decimal)task.Quantity/plan.Quantity;
             var taskEntity = new TaskEntity
             {
                 Id = Guid.NewGuid(),
@@ -78,13 +118,21 @@ public class ProjectController : ControllerBase
                 Quantity = task.Quantity,
                 GroupId = groupEntity.Id,
                 ProjectPlanId = plan.Id,
+                PercentageContent = percentageContent,
+                TotalActualPriceMaterial = plan.TotalActualPriceMaterial * percentageContent,
+                TotalActualPriceWork = plan.TotalActualPriceWork * percentageContent,
+                TotalActualPrice = plan.TotalActualPrice  * percentageContent,
+                TotalLabor = plan.TotalLabor * (double)percentageContent,
+                TotalCostPriceMaterial = plan.TotalCostPriceMaterial * percentageContent,
+                TotalCostPriceWork = plan.TotalCostPriceWork * percentageContent,
+                TotalCostPrice = plan.TotalCostPrice * percentageContent
             };
             await dbContext.Tasks.AddAsync(taskEntity);
         }
         
         foreach (var subGroup in group.SubGroups)
         {
-            await AddGroupAsync(dbContext,subGroup);
+            await AddGroupAsync(groupEntity.ParentGroupId,dbContext,subGroup);
         }
     }
 }
