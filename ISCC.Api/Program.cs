@@ -43,28 +43,27 @@ app.MapControllers();
 app.UseRouting();
 app.UseSwagger();
 app.UseSwaggerUI();
+
+var scope = app.Services.CreateScope();
+
+var services = scope.ServiceProvider;
+var context = services.GetRequiredService<MainDbContext>();
+
+await context.Database.MigrateAsync(); 
+
+var unitTypeId = Guid.Parse("F82901E1-7E54-4FB7-82C7-130D76E9FAA4");
+if (await context.UnitTypes.Where(u => u.Id == unitTypeId).CountAsync() == 0)
+{
+    var unitType = new UnitTypeEntity()
+    {
+        Id = unitTypeId,
+        Name = "шт"
+    };
+    await context.UnitTypes.AddAsync(unitType);
+    await context.SaveChangesAsync();
+}
+scope.Dispose();
+
 app.Run();
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
 
-    await Task.Delay(10_000);
-    
-    var context = services.GetRequiredService<MainDbContext>();
-    context.Database.Migrate(); 
-
-    var unitTypeId = Guid.Parse("F82901E1-7E54-4FB7-82C7-130D76E9FAA4");
-    if (!await context.UnitTypes.AnyAsync(u => u.Id == unitTypeId))
-    {
-        var unitType = new UnitTypeEntity()
-        {
-            Id = Guid.Parse("F82901E1-7E54-4FB7-82C7-130D76E9FAA4"),
-            Name = "шт"
-        };
-        await context.UnitTypes.AddAsync(unitType);
-
-        await context.SaveChangesAsync();
-    }
-    
-}
