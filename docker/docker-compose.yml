@@ -31,5 +31,3 @@ services:
       ConnectionStrings__MainDbContext: 'Host=iscc-postgres;User Id=admin;Password=admin;Database=ISCC_DB;Port=5432'
     depends_on:
       - iscc-postgres
-      
-  

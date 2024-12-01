@@ -5,6 +5,7 @@ using ISCC.Domain.DependencyInjection;
 using ISCC.Domain.Models;
 using ISCC.Storage;
 using ISCC.Storage.DependencyInjection;
+using ISCC.Storage.Entities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,4 +54,15 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<MainDbContext>();
     context.Database.Migrate(); 
 
+    var unitTypeId = Guid.Parse("F82901E1-7E54-4FB7-82C7-130D76E9FAA4");
+    if (!await context.UnitTypes.AnyAsync(u => u.Id == unitTypeId))
+    {
+        var unitType = new UnitTypeEntity()
+        {
+            Id = Guid.Parse("F82901E1-7E54-4FB7-82C7-130D76E9FAA4"),
+            Name = "шт"
+        };
+        await context.UnitTypes.AddAsync(unitType);
+    }
+    
 }

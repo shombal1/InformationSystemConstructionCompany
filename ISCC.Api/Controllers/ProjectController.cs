@@ -4,6 +4,7 @@ using ISCC.Api.Models.Response;
 using ISCC.Domain.UseCase.CreateProjectUseCase;
 using ISCC.Domain.UseCase.GetAllProjects;
 using ISCC.Storage;
+using ISCC.Storage.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,5 +43,46 @@ public class ProjectController : ControllerBase
         return Ok(await Task.FromResult("sucess"));
     }
     
-    
+    // public async Task AddGroupsAsync(MainDbContext dbContext,IEnumerable<CreateGroupTasksDto> groupTasks)
+    // {
+    //     foreach (var group in groupTasks)
+    //     {
+    //         await AddGroupAsync(group);
+    //     }
+    //     await dbContext.SaveChangesAsync();
+    // }
+    //
+    // private async Task AddGroupAsync(MainDbContext dbContext,CreateGroupTasksDto group)
+    // {
+    //     var groupEntity = new GroupTaskEntity()
+    //     {
+    //         Id = Guid.NewGuid(),
+    //         Name = group.Name,
+    //         ProjectId = group.ProjectId,
+    //         
+    //         
+    //     };
+    //     await dbContext.GroupTasks.AddAsync(groupEntity);
+    //
+    //
+    //     foreach (var task in group.Tasks)
+    //     {
+    //         var plan = dbContext.ProjectPlans.First(p => task. == p.Id);
+    //         
+    //         var taskEntity = new TaskEntity
+    //         {
+    //             Id = Guid.NewGuid(),
+    //             Name = task.Name,
+    //             Quantity = task.Quantity,
+    //             GroupId = groupEntity.Id,
+    //             ProjectPlanId = plan.Id
+    //         };
+    //         await dbContext.Tasks.AddAsync(taskEntity);
+    //     }
+    //     
+    //     foreach (var subGroup in group.SubGroups)
+    //     {
+    //         await AddGroupAsync(dbContext,subGroup);
+    //     }
+    // }
 }

@@ -12,6 +12,7 @@ public class MainDbContext(DbContextOptions<MainDbContext> options) : DbContext(
 
     public DbSet<TaskEntity> Tasks { get; set; }
 
+    public DbSet<GroupTaskEntity> GroupTasks { get; set; }
     public DbSet<ResourceEntity> Resources { get; set; }
 
     public DbSet<UnitTypeEntity> UnitTypes { get; set; }
@@ -23,12 +24,6 @@ public class MainDbContext(DbContextOptions<MainDbContext> options) : DbContext(
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(MainDbContext))!);
-
-        modelBuilder.Entity<UnitTypeEntity>().HasData(new UnitTypeEntity()
-        {
-            Id = Guid.Parse("F82901E1-7E54-4FB7-82C7-130D76E9FAA4"),
-            Name = "шт"
-        });
         
         base.OnModelCreating(modelBuilder);
     }
